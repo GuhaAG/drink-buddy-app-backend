@@ -1,0 +1,7 @@
+DrinkBuddy/poc/profile/entity/BuddyNotFoundException.class
+DrinkBuddy/poc/profile/entity/Buddy.class
+DrinkBuddy/poc/profile/entity/PreloadBuddies.class
+DrinkBuddy/poc/profile/entity/BuddyNotFoundAdvise.class
+DrinkBuddy/poc/profile/entity/BuddyRepository.class
+DrinkBuddy/poc/PocApplication.class
+DrinkBuddy/poc/profile/entity/BuddyController.class
