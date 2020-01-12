@@ -1,9 +1,11 @@
-package DrinkBuddy.poc.profile.entity;
+package DrinkBuddy.poc.profile;
 
 
 
         import java.util.List;
 
+        import DrinkBuddy.poc.profile.entity.BuddyProfile;
+        import DrinkBuddy.poc.profile.exceptions.BuddyNotFoundException;
         import org.springframework.web.bind.annotation.DeleteMapping;
         import org.springframework.web.bind.annotation.GetMapping;
         import org.springframework.web.bind.annotation.PathVariable;

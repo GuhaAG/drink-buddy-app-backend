@@ -1,4 +1,4 @@
-package DrinkBuddy.poc.profile.entity;
+package DrinkBuddy.poc.profile.exceptions;
 
 public class BuddyNotFoundException extends RuntimeException {
     public BuddyNotFoundException(Long id) {

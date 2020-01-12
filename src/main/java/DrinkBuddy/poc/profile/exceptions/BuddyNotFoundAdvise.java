@@ -1,4 +1,4 @@
-package DrinkBuddy.poc.profile.entity;
+package DrinkBuddy.poc.profile.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
