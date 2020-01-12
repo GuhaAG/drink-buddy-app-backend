@@ -1,4 +1,4 @@
-package DrinkBuddy.poc.profile.swagger;
+package DrinkBuddy.poc.util.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

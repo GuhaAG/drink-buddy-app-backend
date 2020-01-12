@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from availableRepository -->
 	</parent>
 	<groupId>DrinkBuddy</groupId>
 	<artifactId>poc</artifactId>
@@ -78,7 +78,14 @@
 			<artifactId>swagger-models</artifactId>
 			<version>${swagger-models.version}</version>
 		</dependency>
-	</dependencies>
+        <!--Joda Date Time-->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.10.5</version>
+        </dependency>
+
+    </dependencies>
 
 	<build>
 		<plugins>
