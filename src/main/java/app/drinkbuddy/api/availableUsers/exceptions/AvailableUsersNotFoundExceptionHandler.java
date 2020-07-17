@@ -1,4 +1,4 @@
-package DrinkBuddy.poc.profile.exceptions;
+package app.drinkbuddy.api.availableUsers.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class BuddyNotFoundAdvise {
+class AvailableUsersNotFoundExceptionHandler {
 
     @ResponseBody
-    @ExceptionHandler(BuddyNotFoundException.class)
+    @ExceptionHandler(AvailableUsersNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String buddyNotFoundHandler(BuddyNotFoundException ex) {
+    String availableUsersNotFoundHandler(AvailableUsersNotFoundException ex) {
         return ex.getMessage();
     }
 }

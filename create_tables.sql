@@ -1,25 +1,26 @@
-CREATE TABLE buddy_profile
+CREATE TABLE users
 (
     id serial NOT NULL,
-    "firstName" character varying(255),
-    "lastName" character varying(255),
+    first_name character varying(255),
+    last_name character varying(255),
     email character varying(255) NOT NULL,
     phone character varying(127),
-    "aboutMe" text,
+    about text,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE available
+CREATE TABLE available_users
 (
     id serial NOT NULL,
-    "buddyId" bigint NOT NULL,
-    "barName" character varying(255),
+    user_id bigint NOT NULL,
+    bar_name character varying(255),
     longitude double precision,
     latitude double precision,
-    "lastSeen" bigint,
+    last_seen timestamp,
+    geo_position geometry,
     PRIMARY KEY (id),
-    CONSTRAINT buddy_fk FOREIGN KEY ("buddyId")
-        REFERENCES buddy_profile (id) MATCH SIMPLE
+    CONSTRAINT available_users_fk FOREIGN KEY ("user_id")
+        REFERENCES users (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
         NOT VALID

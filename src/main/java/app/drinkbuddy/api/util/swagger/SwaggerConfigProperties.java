@@ -1,4 +1,4 @@
-package DrinkBuddy.poc.util.swagger;
+package app.drinkbuddy.api.util.swagger;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

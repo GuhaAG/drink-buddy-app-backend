@@ -1,4 +1,4 @@
-package DrinkBuddy.poc.util.swagger;
+package app.drinkbuddy.api.util.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,11 +19,12 @@ import java.time.LocalDate;
 public class SwaggerConfig {
     @Bean
     public Docket eDesignApi(SwaggerConfigProperties swaggerConfigProperties) {
-        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo(swaggerConfigProperties)).enable(Boolean.valueOf(swaggerConfigProperties.getEnabled())).select().apis(RequestHandlerSelectors.any())
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo(swaggerConfigProperties)).enable(Boolean.parseBoolean(swaggerConfigProperties.getEnabled())).select().apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any()).build().pathMapping("/").directModelSubstitute(LocalDate.class, String.class)
-                .genericModelSubstitutes(ResponseEntity.class).useDefaultResponseMessages(Boolean.valueOf(swaggerConfigProperties.getUseDefaultResponseMessages()))
-                .enableUrlTemplating(Boolean.valueOf(swaggerConfigProperties.getEnableUrlTemplating()));
+                .genericModelSubstitutes(ResponseEntity.class).useDefaultResponseMessages(Boolean.parseBoolean(swaggerConfigProperties.getUseDefaultResponseMessages()))
+                .enableUrlTemplating(Boolean.parseBoolean(swaggerConfigProperties.getEnableUrlTemplating()));
     }
+
     @Bean
     UiConfiguration uiConfig(SwaggerConfigProperties swaggerConfigProperties) {
         return UiConfigurationBuilder.builder().deepLinking(Boolean.valueOf(swaggerConfigProperties.getDeepLinking())).displayOperationId(Boolean.valueOf(swaggerConfigProperties.getDisplayOperationId()))
@@ -33,6 +34,7 @@ public class SwaggerConfig {
                 .showExtensions(Boolean.valueOf(swaggerConfigProperties.getShowExtensions())).tagsSorter(TagsSorter.ALPHA)
                 .supportedSubmitMethods(UiConfiguration.Constants.DEFAULT_SUBMIT_METHODS).validatorUrl(null).build();
     }
+
     private ApiInfo apiInfo(SwaggerConfigProperties swaggerConfigProperties) {
         return new ApiInfoBuilder().title(swaggerConfigProperties.getTitle()).description(swaggerConfigProperties.getDescription())
                 .version(swaggerConfigProperties.getApiVersion()).build();
