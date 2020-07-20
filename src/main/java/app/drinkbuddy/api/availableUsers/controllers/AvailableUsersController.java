@@ -1,11 +1,12 @@
 package app.drinkbuddy.api.availableUsers.controllers;
 
 
-import app.drinkbuddy.api.availableUsers.services.AvailableUsersRepository;
 import app.drinkbuddy.api.availableUsers.entities.AvailableUsersEntity;
 import app.drinkbuddy.api.availableUsers.exceptions.AvailableUsersNotFoundException;
+import app.drinkbuddy.api.availableUsers.services.AvailableUsersRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -17,37 +18,34 @@ class AvailableUsersController {
         this.availableUsersRepository = availableUsersRepository;
     }
 
-    // Aggregate root
-
     @GetMapping("/available")
-    public List<AvailableUsersEntity> all() {
+    public List<AvailableUsersEntity> find() {
         return availableUsersRepository.findAll();
     }
 
-    @PostMapping("/available")
-    AvailableUsersEntity newAvailableUsers(@RequestBody AvailableUsersEntity newAvailableUsersEntity) {
-        return availableUsersRepository.save(newAvailableUsersEntity);
-    }
-
-    // Single item
-
     @GetMapping("/available/{id}")
-    AvailableUsersEntity one(@PathVariable Long id) {
+    AvailableUsersEntity findById(@PathVariable Long id) {
 
         return availableUsersRepository.findById(id)
                 .orElseThrow(() -> new AvailableUsersNotFoundException(id));
     }
 
+    @PostMapping("/available")
+    AvailableUsersEntity make(@RequestBody AvailableUsersEntity newAvailableUsersEntity) {
+        newAvailableUsersEntity.setLastSeen(new Timestamp(System.currentTimeMillis()));
+        return availableUsersRepository.save(newAvailableUsersEntity);
+    }
+
     @PutMapping("/available/{id}")
-    AvailableUsersEntity replaceAvailableUsers(@RequestBody AvailableUsersEntity newAvailableUsersEntity, @PathVariable Long id) {
+    AvailableUsersEntity update(@RequestBody AvailableUsersEntity newAvailableUsersEntity, @PathVariable Long id) {
 
         return availableUsersRepository.findById(id)
-                .map(BuddyProfile -> {
-                    BuddyProfile.setBarName(newAvailableUsersEntity.getBarName());
-                    BuddyProfile.setLatitude(newAvailableUsersEntity.getLatitude());
-                    BuddyProfile.setLongitude(newAvailableUsersEntity.getLongitude());
-                    BuddyProfile.setLastSeen(newAvailableUsersEntity.getLastSeen());
-                    return availableUsersRepository.save(BuddyProfile);
+                .map(user -> {
+                    user.setBarName(newAvailableUsersEntity.getBarName());
+                    user.setLatitude(newAvailableUsersEntity.getLatitude());
+                    user.setLongitude(newAvailableUsersEntity.getLongitude());
+                    user.setLastSeen(newAvailableUsersEntity.getLastSeen());
+                    return availableUsersRepository.save(user);
                 })
                 .orElseGet(() -> {
                     newAvailableUsersEntity.setId(id);
@@ -56,7 +54,7 @@ class AvailableUsersController {
     }
 
     @DeleteMapping("/available/{id}")
-    void deleteAvailableUsers(@PathVariable Long id) {
+    void remove(@PathVariable Long id) {
         availableUsersRepository.deleteById(id);
     }
 }

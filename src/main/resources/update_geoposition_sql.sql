@@ -1,0 +1,1 @@
+UPDATE public.available_users SET geometry = ST_SetSRID(ST_MakePoint(longitude, latitude), 4326);

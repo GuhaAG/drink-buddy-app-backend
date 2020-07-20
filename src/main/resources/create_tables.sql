@@ -16,8 +16,8 @@ CREATE TABLE available_users
     bar_name character varying(255),
     longitude double precision,
     latitude double precision,
+    geometry geometry,
     last_seen timestamp,
-    geo_position geometry,
     PRIMARY KEY (id),
     CONSTRAINT available_users_fk FOREIGN KEY ("user_id")
         REFERENCES users (id) MATCH SIMPLE

@@ -1,7 +1,6 @@
 package app.drinkbuddy.api.users.entities;
 
 import lombok.Data;
-import org.springframework.data.geo.Point;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +16,16 @@ class UsersEntity {
     private @Id
     @GeneratedValue
     Long id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private String phone;
+
     private String about;
-    private Point geoPosition;
 
     public UsersEntity() {
     }
@@ -33,6 +36,5 @@ class UsersEntity {
         this.email = email;
         this.phone = phone;
         this.about = about;
-        this.geoPosition = null;
     }
 }

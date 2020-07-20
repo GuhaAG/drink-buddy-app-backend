@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -15,17 +16,21 @@ public class AvailableUsersEntity {
     private @Id
     @GeneratedValue
     Long id;
-    private Long userId;
-    private String barName;
-    private double longitude;
-    private double latitude;
-    private Long lastSeen;
 
+    private Long userId;
+
+    private String barName;
+
+    private double longitude;
+
+    private double latitude;
+
+    private Timestamp lastSeen;
 
     public AvailableUsersEntity() {
     }
 
-    public AvailableUsersEntity(Long userId, String barName, double longitude, double latitude, Long lastSeen) {
+    public AvailableUsersEntity(Long userId, String barName, double longitude, double latitude, Timestamp lastSeen) {
         this.userId = userId;
         this.barName = barName;
         this.longitude = longitude;
